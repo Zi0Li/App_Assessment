@@ -1,4 +1,5 @@
-  import 'package:app_assessment/pages/home.dart';
+//import 'package:app_assessment/pages/home.dart';
+import 'package:app_assessment/pages/login.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -20,7 +21,7 @@ class _AppAssessmentState extends State<AppAssessment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomePage(),
+      body: LoginPage(),
     );
   }
 }

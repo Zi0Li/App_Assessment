@@ -13,6 +13,10 @@ class ResgisterPage extends StatefulWidget {
 class _ResgisterPageState extends State<ResgisterPage> {
   bool isChecked = false;
   String? _img;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _companyController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +71,6 @@ class _ResgisterPageState extends State<ResgisterPage> {
                               color: Color.fromRGBO(104, 116, 232, 0.2),
                             ),
                           ),
-                          image: DecorationImage(
-                              image: _img != null
-                                  ? FileImage(File(_img!))
-                                  : Image.memory(kTransparentImage)
-                                      as ImageProvider),
                         ),
                         child: Center(
                           child: Icon(
@@ -138,7 +137,8 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          _textField('exemple@exemple.com', Icons.mail_outline),
+                          _textField('exemple@exemple.com', Icons.mail_outline,
+                              _emailController),
                         ],
                       ),
                       SizedBox(
@@ -158,7 +158,8 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          _textField('Exemple', Icons.apartment),
+                          _textField(
+                              'Exemple', Icons.apartment, _companyController),
                         ],
                       ),
                     ],
@@ -182,7 +183,8 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          _textField('********', Icons.lock_outline, '1'),
+                          _textField('********', Icons.lock_outline,
+                              _passwordController, '1'),
                         ],
                       ),
                       SizedBox(
@@ -202,7 +204,8 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          _textField('********', Icons.lock_outline, '1'),
+                          _textField('********', Icons.lock_outline,
+                              _passwordConfirmController, '1'),
                         ],
                       )
                     ],
@@ -261,7 +264,13 @@ class _ResgisterPageState extends State<ResgisterPage> {
                       width: 550,
                       height: 68,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print('Email: ${_emailController.text}');
+                          print('company: ${_companyController.text}');
+                          print('password: ${_passwordController.text}');
+                          print(
+                              'passwordConfirm: ${_passwordConfirmController.text}');
+                        },
                         child: Text(
                           'Criar conta',
                           style: TextStyle(color: Colors.white, fontSize: 23),
@@ -282,11 +291,14 @@ class _ResgisterPageState extends State<ResgisterPage> {
     );
   }
 
-  Widget _textField(String _label, IconData _icon, [String _suffix = '']) {
+  Widget _textField(
+      String _label, IconData _icon, TextEditingController _controller,
+      [String _suffix = '']) {
     return SizedBox(
       width: 550,
       height: 68,
       child: TextField(
+        controller: _controller,
         decoration: InputDecoration(
           hintText: _label,
           hintStyle: TextStyle(color: Color.fromRGBO(116, 121, 128, 1)),

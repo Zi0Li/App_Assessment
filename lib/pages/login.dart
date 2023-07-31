@@ -16,6 +16,9 @@ class _LoginPageState extends State<LoginPage> {
   bool _select = true;
   bool isChecked = false;
 
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +79,9 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-                _textField('exemple@exemple.com', Icons.mail_outline),
+                _textField(
+                    'exemple@exemple.com', Icons.mail_outline, _emailController,
+                    type: TextInputType.emailAddress),
                 SizedBox(
                   height: 28,
                 ),
@@ -91,7 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-                _textField('********', Icons.lock_outline, '1'),
+                _textField('********', Icons.lock_outline, _passwordController,
+                    suffix: '1', obscureText: true),
                 SizedBox(
                   height: 20,
                 ),
@@ -143,7 +149,12 @@ class _LoginPageState extends State<LoginPage> {
                   width: 550,
                   height: 68,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        print(_emailController.text);
+                        print(_passwordController.text);
+                      });
+                    },
                     child: Text(
                       'Entrar',
                       style: TextStyle(color: Colors.white, fontSize: 23),
@@ -162,8 +173,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _textField(String _label, IconData _icon, [String _suffix = '']) {
+  Widget _textField(
+      String _label, IconData _icon, TextEditingController _controller,
+      {TextInputType? type, String suffix = '', bool obscureText = false}) {
     return TextField(
+      controller: _controller,
+      keyboardType: type,
+      obscureText: obscureText,
       decoration: InputDecoration(
         hintText: _label,
         hintStyle: TextStyle(color: Color.fromRGBO(116, 121, 128, 1)),
@@ -174,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         suffixIcon: Icon(
           Icons.remove_red_eye_outlined,
-          color: _suffix == ''
+          color: suffix == ''
               ? Colors.transparent
               : Color.fromRGBO(102, 112, 133, 1),
         ),

@@ -1,7 +1,7 @@
-import 'dart:io';
 import 'package:app_assessment/pages/login.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class ResgisterPage extends StatefulWidget {
   const ResgisterPage({super.key});
@@ -13,10 +13,11 @@ class ResgisterPage extends StatefulWidget {
 class _ResgisterPageState extends State<ResgisterPage> {
   bool isChecked = false;
   String? _img;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _companyController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _passwordConfirmController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _companyController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordConfirmController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +74,22 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           ),
                         ),
                         child: Center(
-                          child: Icon(
-                            Icons.image_search_outlined,
-                            size: 72,
-                            color: Color.fromRGBO(104, 116, 232, 1),
-                          ),
+                          child: _img == null
+                              ? Icon(
+                                  Icons.image_search_outlined,
+                                  size: 72,
+                                  color: Color.fromRGBO(104, 116, 232, 1),
+                                )
+                              : Container(
+                                  width: 132,
+                                  height: 132,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: FileImage(File(_img!))),
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
@@ -89,7 +101,19 @@ class _ResgisterPageState extends State<ResgisterPage> {
                             width: 225,
                             height: 45,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                ImagePicker()
+                                    .pickImage(source: ImageSource.camera)
+                                    .then((file) {
+                                  if (file == null) {
+                                    return;
+                                  } else {
+                                    setState(() {
+                                      _img = file.path;
+                                    });
+                                  }
+                                });
+                              },
                               child: Text(
                                 '+ Adicionar foto',
                                 style: TextStyle(
@@ -137,8 +161,12 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          _textField('exemple@exemple.com', Icons.mail_outline,
-                              _emailController),
+                          _textField(
+                            'exemple@exemple.com',
+                            Icons.mail_outline,
+                            _emailController,
+                            type: TextInputType.emailAddress,
+                          )
                         ],
                       ),
                       SizedBox(
@@ -184,7 +212,8 @@ class _ResgisterPageState extends State<ResgisterPage> {
                             height: 10,
                           ),
                           _textField('********', Icons.lock_outline,
-                              _passwordController, '1'),
+                              _passwordController,
+                              suffix: '1', obscureText: true),
                         ],
                       ),
                       SizedBox(
@@ -205,7 +234,8 @@ class _ResgisterPageState extends State<ResgisterPage> {
                             height: 10,
                           ),
                           _textField('********', Icons.lock_outline,
-                              _passwordConfirmController, '1'),
+                              _passwordConfirmController,
+                              suffix: '1', obscureText: true),
                         ],
                       )
                     ],
@@ -270,6 +300,7 @@ class _ResgisterPageState extends State<ResgisterPage> {
                           print('password: ${_passwordController.text}');
                           print(
                               'passwordConfirm: ${_passwordConfirmController.text}');
+                          print('IMG: $_img');
                         },
                         child: Text(
                           'Criar conta',
@@ -293,11 +324,13 @@ class _ResgisterPageState extends State<ResgisterPage> {
 
   Widget _textField(
       String _label, IconData _icon, TextEditingController _controller,
-      [String _suffix = '']) {
+      {TextInputType? type, String suffix = '', bool obscureText = false}) {
     return SizedBox(
       width: 550,
       height: 68,
       child: TextField(
+        keyboardType: type,
+        obscureText: obscureText,
         controller: _controller,
         decoration: InputDecoration(
           hintText: _label,
@@ -309,7 +342,7 @@ class _ResgisterPageState extends State<ResgisterPage> {
           ),
           suffixIcon: Icon(
             Icons.remove_red_eye_outlined,
-            color: _suffix == ''
+            color: suffix == ''
                 ? Colors.transparent
                 : Color.fromRGBO(102, 112, 133, 1),
           ),

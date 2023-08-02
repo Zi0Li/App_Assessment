@@ -16,8 +16,7 @@ class _ResgisterPageState extends State<ResgisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _companyController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _passwordConfirmController =
-      TextEditingController();
+  final TextEditingController _passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,290 +29,290 @@ class _ResgisterPageState extends State<ResgisterPage> {
         color: Colors.white,
         child: Center(
           child: SingleChildScrollView(
-            child: Container(
-              width: 1120,
-              height: 800,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Criar Conta',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 132,
-                        height: 132,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(104, 116, 232, 0.1),
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 1,
-                              color: Color.fromRGBO(104, 116, 232, 0.2),
-                            ),
-                            left: BorderSide(
-                              width: 1,
-                              color: Color.fromRGBO(104, 116, 232, 0.2),
-                            ),
-                            right: BorderSide(
-                              width: 1,
-                              color: Color.fromRGBO(104, 116, 232, 0.2),
-                            ),
-                            top: BorderSide(
-                              width: 1,
-                              color: Color.fromRGBO(104, 116, 232, 0.2),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Container(
+                width: 1120,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Criar Conta',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 45,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 132,
+                          height: 132,
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(104, 116, 232, 0.1),
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border(
+                              bottom: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(104, 116, 232, 0.2),
+                              ),
+                              left: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(104, 116, 232, 0.2),
+                              ),
+                              right: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(104, 116, 232, 0.2),
+                              ),
+                              top: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(104, 116, 232, 0.2),
+                              ),
                             ),
                           ),
+                          child: Center(
+                            child: _img == null
+                                ? Icon(
+                                    Icons.image_search_outlined,
+                                    size: 72,
+                                    color: Color.fromRGBO(104, 116, 232, 1),
+                                  )
+                                : Container(
+                                    width: 132,
+                                    height: 132,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: FileImage(File(_img!))),
+                                    ),
+                                  ),
+                          ),
                         ),
-                        child: Center(
-                          child: _img == null
-                              ? Icon(
-                                  Icons.image_search_outlined,
-                                  size: 72,
-                                  color: Color.fromRGBO(104, 116, 232, 1),
-                                )
-                              : Container(
-                                  width: 132,
-                                  height: 132,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: FileImage(File(_img!))),
+                        SizedBox(
+                          width: 40,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              width: 225,
+                              height: 45,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  ImagePicker()
+                                      .pickImage(source: ImageSource.camera)
+                                      .then((file) {
+                                    if (file == null) {
+                                      return;
+                                    } else {
+                                      setState(() {
+                                        _img = file.path;
+                                      });
+                                    }
+                                  });
+                                },
+                                child: Text(
+                                  '+ Adicionar foto',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: 'inter',
+                                      color: Colors.white),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromRGBO(104, 116, 232, 1),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Column(
-                        children: [
-                          SizedBox(
-                            width: 225,
-                            height: 45,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                ImagePicker()
-                                    .pickImage(source: ImageSource.camera)
-                                    .then((file) {
-                                  if (file == null) {
-                                    return;
-                                  } else {
-                                    setState(() {
-                                      _img = file.path;
-                                    });
-                                  }
-                                });
-                              },
-                              child: Text(
-                                '+ Adicionar foto',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: 'inter',
-                                    color: Colors.white),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromRGBO(104, 116, 232, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Adicione a logo da empresa',
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.black87),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Adicione a logo da empresa',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black87),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Center(
+                      child: Wrap(
                         children: [
-                          Text(
-                            'E-mail',
-                            style: TextStyle(
-                                fontFamily: 'inter',
-                                color: Colors.black,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'E-mail',
+                                style: TextStyle(
+                                    fontFamily: 'inter',
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              _textField(
+                                'exemple@exemple.com',
+                                Icons.mail_outline,
+                                _emailController,
+                                type: TextInputType.emailAddress,
+                              )
+                            ],
                           ),
                           SizedBox(
-                            height: 10,
+                            width: 20,
                           ),
-                          _textField(
-                            'exemple@exemple.com',
-                            Icons.mail_outline,
-                            _emailController,
-                            type: TextInputType.emailAddress,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Nome da empresa',
-                            style: TextStyle(
-                                fontFamily: 'inter',
-                                color: Colors.black,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Nome da empresa',
+                                style: TextStyle(
+                                    fontFamily: 'inter',
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              _textField(
+                                  'Exemple', Icons.apartment, _companyController),
+                            ],
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 30,
                           ),
-                          _textField(
-                              'Exemple', Icons.apartment, _companyController),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Senha',
-                            style: TextStyle(
-                                fontFamily: 'inter',
-                                color: Colors.black,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Senha',
+                                style: TextStyle(
+                                    fontFamily: 'inter',
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              _textField('********', Icons.lock_outline,
+                                  _passwordController,
+                                  suffix: '1', obscureText: true),
+                            ],
                           ),
                           SizedBox(
-                            height: 10,
+                            width: 20,
                           ),
-                          _textField('********', Icons.lock_outline,
-                              _passwordController,
-                              suffix: '1', obscureText: true),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Confirmar a senha',
+                                style: TextStyle(
+                                    fontFamily: 'inter',
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              _textField('********', Icons.lock_outline,
+                                  _passwordConfirmController,
+                                  suffix: '1', obscureText: true),
+                            ],
+                          ),
                         ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Confirmar a senha',
-                            style: TextStyle(
-                                fontFamily: 'inter',
-                                color: Colors.black,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          _textField('********', Icons.lock_outline,
-                              _passwordConfirmController,
-                              suffix: '1', obscureText: true),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Checkbox(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        checkColor: Colors.white,
-                        activeColor: Color.fromRGBO(104, 116, 232, 1),
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        },
-                      ),
-                      Text(
-                        'Eu aceito os termos de política e privacidade',
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 429,
-                      ),
-                      Text(
-                        'Já tem uma conta? ',
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
-                        },
-                        child: Text(
-                          'Entrar',
-                          style: TextStyle(
-                            color: Color.fromRGBO(104, 116, 232, 1),
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: 550,
-                      height: 68,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          print('Email: ${_emailController.text}');
-                          print('company: ${_companyController.text}');
-                          print('password: ${_passwordController.text}');
-                          print(
-                              'passwordConfirm: ${_passwordConfirmController.text}');
-                          print('IMG: $_img');
-                        },
-                        child: Text(
-                          'Criar conta',
-                          style: TextStyle(color: Colors.white, fontSize: 23),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(104, 116, 232, 1),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
                       ),
                     ),
-                  )
-                ],
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Já tem uma conta? ',
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          },
+                          child: Text(
+                            'Entrar',
+                            style: TextStyle(
+                              color: Color.fromRGBO(104, 116, 232, 1),
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          checkColor: Colors.white,
+                          activeColor: Color.fromRGBO(104, 116, 232, 1),
+                          value: isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked = value!;
+                            });
+                          },
+                        ),
+                        Text(
+                          'Eu aceito os termos de política e privacidade',
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                        SizedBox(
+                      height: 30,
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 550,
+                        height: 68,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            print('Email: ${_emailController.text}');
+                            print('company: ${_companyController.text}');
+                            print('password: ${_passwordController.text}');
+                            print(
+                                'passwordConfirm: ${_passwordConfirmController.text}');
+                            print('IMG: $_img');
+                          },
+                          child: Text(
+                            'Criar conta',
+                            style: TextStyle(color: Colors.white, fontSize: 23),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(104, 116, 232, 1),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

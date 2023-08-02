@@ -1,4 +1,5 @@
 import 'package:app_assessment/pages/register.dart';
+import 'package:app_assessment/pages/selectCompany.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -153,6 +154,10 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         print(_emailController.text);
                         print(_passwordController.text);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SelectCompany()));
                       });
                     },
                     child: Text(

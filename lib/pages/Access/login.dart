@@ -1,5 +1,5 @@
-import 'package:app_assessment/pages/register.dart';
-import 'package:app_assessment/pages/selectCompany.dart';
+import 'package:app_assessment/pages/Access/register.dart';
+import 'package:app_assessment/pages/Access/selectCompany.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {

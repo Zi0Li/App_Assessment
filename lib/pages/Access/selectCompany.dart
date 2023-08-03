@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_assessment/pages/User/search.dart';
 import 'package:flutter/material.dart';
 
 class SelectCompany extends StatefulWidget {
@@ -38,7 +39,11 @@ class _SelectCompanyState extends State<SelectCompany> {
                     alignment: WrapAlignment.center,
                     runSpacing: 10,
                     spacing: 10,
-                    children: [_cardCompany(),_cardCompany(),_cardCompany(),],
+                    children: [
+                      _cardCompany(),
+                      _cardCompany(),
+                      _cardCompany(),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -71,12 +76,20 @@ class _SelectCompanyState extends State<SelectCompany> {
                                   color: Color.fromRGBO(104, 116, 232, 0.2))),
                         ),
                       ),
-                    ),SizedBox(width: 20,),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     SizedBox(
                       width: 130,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SearchPage()));
+                        },
                         child: Text(
                           'Escolher',
                           style: TextStyle(

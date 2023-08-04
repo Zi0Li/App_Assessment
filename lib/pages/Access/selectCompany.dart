@@ -16,102 +16,131 @@ class _SelectCompanyState extends State<SelectCompany> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Selecione sua empresa',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 44,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  width: 560,
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    runSpacing: 10,
-                    spacing: 10,
-                    children: [
-                      _cardCompany(),
-                      _cardCompany(),
-                      _cardCompany(),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Row(
+      body: Stack(
+        children: [
+          Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      'Selecione sua empresa',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 44,
+                          fontWeight: FontWeight.w600),
+                    ),
                     SizedBox(
-                      width: 130,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'Cancelar',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'inter',
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(
-                                  width: 2,
-                                  color: Color.fromRGBO(104, 116, 232, 0.2))),
-                        ),
+                      height: 40,
+                    ),
+                    Container(
+                      width: 560,
+                      child: Wrap(
+                        alignment: WrapAlignment.center,
+                        runSpacing: 10,
+                        spacing: 10,
+                        children: [
+                          _cardCompany(),
+                          _cardCompany(),
+                          _cardCompany(),
+                        ],
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      height: 40,
                     ),
-                    SizedBox(
-                      width: 130,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SearchPage()));
-                        },
-                        child: Text(
-                          'Escolher',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'inter',
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(104, 116, 232, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 130,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              'Cancelar',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(
+                                      width: 2,
+                                      color: Color.fromRGBO(104, 116, 232, 0.2))),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        SizedBox(
+                          width: 130,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SearchPage()));
+                            },
+                            child: Text(
+                              'Escolher',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(104, 116, 232, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(35),
+            child: SizedBox(
+              width: 70,
+              height: 40,
+              child: TextButton(
+                onPressed: () {
+                  print('Clicou');
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Voltar',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                style: TextButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(104, 116, 232, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

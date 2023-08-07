@@ -1,3 +1,4 @@
+import 'package:app_assessment/pages/User/question.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -213,7 +214,10 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => QuestionPage()));
+      },
     );
   }
 }

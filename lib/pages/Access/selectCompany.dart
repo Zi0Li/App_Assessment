@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:app_assessment/pages/User/search.dart';
 import 'package:flutter/material.dart';
 
@@ -122,7 +121,6 @@ class _SelectCompanyState extends State<SelectCompany> {
               height: 40,
               child: TextButton(
                 onPressed: () {
-                  print('Clicou');
                   Navigator.pop(context);
                 },
                 child: Text(

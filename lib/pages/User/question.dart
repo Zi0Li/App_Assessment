@@ -1,3 +1,4 @@
+import 'package:app_assessment/pages/User/congratulations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -217,7 +218,7 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CongratulationsPage()));
                 },
                 child: Text(
                   'Avaliar',
